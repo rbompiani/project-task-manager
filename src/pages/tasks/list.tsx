@@ -41,9 +41,6 @@ const List = ({ children }: React.PropsWithChildren) => {
     },
   });
 
-  console.log(tasks);
-  console.log(stages);
-
   const taskStages = React.useMemo(() => {
     if (!tasks?.data || !stages?.data) {
       return {
@@ -51,7 +48,8 @@ const List = ({ children }: React.PropsWithChildren) => {
         stages: [],
       };
     }
-    const unassignedStage = tasks.data.filter((task) => !task.stageId === null);
+    const unassignedStage = tasks.data.filter((task) => task.stageId === null);
+    console.log(unassignedStage);
     const grouped: TaskStage[] = stages.data.map((stage) => ({
       ...stage,
       tasks: tasks.data.filter(
